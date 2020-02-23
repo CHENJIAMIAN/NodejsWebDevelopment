@@ -27,8 +27,7 @@
     当绑定事件时，this指针指向的是：        绑定事件的元素
     
 闭包
-    什么情况下需要使用函数闭包？
-调用栈，
+调用栈
 Promise
     promise的实现原理，进一步会问async、await是否使用过
     Promise对象(前端异步解决方案进化史，generator函数，async函数)
@@ -86,25 +85,14 @@ webpack
         4.svg
     HTTP压缩gzip   
     HTML优化：
-        使用语义化标签
-        减少iframe：iframe是SEO的大忌，iframe有好处也有弊端
-        避免重定向
-         减少HTTP请求
+        使用语义化标签        减少iframe：iframe是SEO的大忌，iframe有好处也有弊端        避免重定向         减少HTTP请求
     CSS优化：哪些css会影响性能
-        压缩
-        布局代码写前面
-        删除空样式
-        不滥用浮动，字体，需要加载的网络字体根据网站需求再添加
-        选择器性能优化
-        避免使用表达式，避免用id写样式
+        压缩去冗余、布局代码写前面、选择器性能优化
     js优化：
-        压缩
-        减少重复代码
-        图片优化：
-        使用WebP
-        图片合并，CSS sprite技术
-        减少DOM操作（事件代理、fragment）
-        缓存已经访问过的元素
+        压缩去冗余
+        减少DOM操作（事件代理、fragment 缓存已经访问过的元素）        
+    资源优化：
+        使用WebP        图片合并，CSS sprite技术
         "离线"更新节点, 再将它们添加到树中
         避免使用 js 输出页面布局--应该是 CSS 的事儿
         使用JSON格式来进行数据交换
@@ -197,6 +185,7 @@ Virtual DOM，Diff 算法
 手写代码（Array、String、prototype）
     'abcd'.f() => 'd-c-b-a'
     map forEach细节
+    手写parseInt的实现：要求简单一些，把字符串型的数字转化为真正的数字即可，但不能使用JS原生的字符串转数字的API，比如Number()
 常用函数 
     bind (好多家都考……)，throttle, debounce
     深拷贝的实现原理
@@ -252,9 +241,8 @@ websocket说一下你的理解以及你所了解的特性。
 1.业务场景：比如说百度的一个服务不想让阿里使用，如果识别到是阿里的请求，然后跳转到404或者拒绝服务之类的？
     考察http协议头Referer，然后怎么判断是阿里的ip或者啥的，我也不太清楚。
 
-5.分析一下移动端日历，PC端日历以及桌面日历的一些不同和需要注意的地方。
-7.怎么实现草稿，多终端同步，以及冲突问题？
-9.常见兼容性问题,列举(移动端/PC端)类似百度搜索的提示框，兼容各大浏览器，可用键盘控制.
+分析一下移动端日历，PC端日历以及桌面日历的一些不同和需要注意的地方？    本质是手机跟电脑的事用差异（分辨率、触摸等）
+常见兼容性问题,列举(移动端/PC端)类似百度搜索的提示框，兼容各大浏览器，可用键盘控制(onkeydown的keyCode).
 1.Ajax原理，原生Ajax实现过程，XHR具体底层原理和API
     发送ajax请求有多少个步骤？如何判定发送成功？（onreadystatechange里的readyState）
     XMLHTTPRequest浏览器兼容性的处理方案？
@@ -406,12 +394,24 @@ BFC
         float不为none
         position为absolute或fixed
         display为inline-block、table-cell、table-caption、flex、inline-flex
-IFC
-对栅格布局系统的理解？  （行列）
+IFC：行盒模型|内联盒子，  
+                形成：每一行的多个内联元素都会共同生成一个IFC
+                用处：快速完成垂直居中和水平居中
+                高度：决定容器高度的优先级 height > line-height > font-size
+对栅格布局系统的理解？      （行列）
 1像素边框问题
-实现页面加载进度条
+    1px不一定等于1个像素，有的设备定义了3个物理像素为1px，具体看window.devicePixelRatio
+    1. 元素匹配：1.1.@media screen and (-webkit-min-device-pixel-ratio: 2) {    .border { border: 0.5px }}    
+                1.2.transform: scale(0.5)
+    2. 全局缩放： if (window.devicePixelRatio == 1) { 
+            viewport.setAttribute('content', 
+            'width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no');  
+            //如果是2：'width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no');  
+            //如果是3：'width=device-width,initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no');  
+        }  
+实现页面加载进度条？    进度：xhr.addEventListener('progress'）绘制：currentProgressBar.style.transform = `translateX(${percentComplete * 100 - 100}%)`;
 实现拖拽功能，比如把5个兄弟节点中的最后一个节点拖拽到节点1和节点2之间
-手写parseInt的实现：要求简单一些，把字符串型的数字转化为真正的数字即可，但不能使用JS原生的字符串转数字的API，比如Number()
+    HTML5：draggable="true"， ondrop、ondragover、ondragstart里dataTransfer用来传拖拽节点间的数据，再appendChild上去
 编写分页器组件的时候，为了减少服务端查询次数，点击“下一页”怎样能确保还有数据可以加载（请求数据不会为空）？
 高阶组件的作用
 stateless组件(感觉主要是让我回答纯函数的概念)
@@ -450,8 +450,9 @@ src与href的区别
 px和em的区别
    em继承父元素的字体大小    浏览器的默认字体高都是16px: 1em=16px
 优雅降级(减少功能)和渐进增强(增加功能)
+cookie存储在哪里?       (浏览器安装目录下)  
+简单说下cookie的属性，
 sessionStorage 、localStorage 和 cookie 之间的区别
-cookie存储在哪里?(memory)  简单说下cookie的属性，
     (1)发到服务器
     (2)大小 4K 5M
     (3)有效期
