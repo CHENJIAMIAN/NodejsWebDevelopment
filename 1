@@ -25,6 +25,7 @@
     如何有效地对标签里面10000个image绑定click事件（考察事件冒泡机制）
     如何获得绑定事件的对象:                 getEventListeners
     当绑定事件时，this指针指向的是：        绑定事件的元素
+    setTimeout原理
     
 闭包
 调用栈
@@ -60,8 +61,8 @@ webpack
     webpack打包是如何处理css图片的？
     如何写webpackPlugin/loader？
     webpack.load的原理
-        loaders是你用在app源码上的转换元件。他们是用node.js运行的，把源文件作为参数，返回新的资源的函数。
-    webpack工具和node了解哪些?node各个模块的底层原理?
+        loaders是你用在app源码上的转换元件。把源文件作为参数，返回新的资源的函数。
+    webpack工具有哪些？
     这个我看过一本书《深入浅出webpack》，所以基本都能回答上来。包括原理和编写loader、Plugin注意事项。当然，我自己没有写过。。。《深入浅出webpack》
     require.js的实现原理？  加载时通过document.createElement的方法引入dom中
     webpack的入口文件怎么配置？多个入口怎么分割？
@@ -211,6 +212,10 @@ Virtual DOM，Diff 算法
     MD5摘要算法其他用途
     加油站问题(贪心算法)
     hash算法实现,如何避免冲突,如何在冲突里检测
+    栈封装,利用栈对数组reverse(编程)
+    出入栈可能性计算
+
+
     
 git命令，如何批量删除分支
     git branch |grep 'branchName' |xargs git branch -D,从分支列表中匹配到指定分支，然后一个一个(分成小块)传递给删除分支的命令，最后进行删除。(参考这里)
@@ -274,11 +279,16 @@ websocket说一下你的理解以及你所了解的特性。
     单例模式实现
 如何写一个CSS库,要注意哪些东西?
 promiseAll如何实现,以及如何实现多层异步回调?
-node多线程如何实现？多线程如何保障各个线程的安全?
-爬虫的实现原理?如何实现一个爬虫,如何解析文件?如何解决爬虫慢的问题?
-对于js这门语言你认为怎么样
+
+爬虫的实现原理?如何实现？         骗浏览器，获取、解析、提取、保存
+    如何解析文件?               用xpath筛选标签|内容
+    如何解决爬虫慢的问题?       多线程|进程|主机
+对于js这门语言你认为怎么样？    
+    作为动态弱类型语言，灵活性高，但这也是缺点，造成很多坑var』、『!= & == 』、『函数提升』、『this』
 说说CSS重要难点?
-说说HTML难点
+    权重优先级|选择器权值 ?
+
+    兼容性
 
                 
 三种隐藏方式差别:visibility:hidden,display:none,opacity:0
@@ -287,18 +297,16 @@ node多线程如何实现？多线程如何保障各个线程的安全?
     3、opacity:0：视觉消失 可触发事件 有动画 
 inline和block元素列举,block和inline-block区别?
     内联元素包含块元素的表现?块元素和内联元素渲染区别?
+
 span包含12px大小英文'abc',问span高度?baseline怎么理解?
-px/em/rem的区别
+px/em/rem的区别?            分别相对分辨率/字体/根元素字体
 string查找第一个不重复字符.如果换成字符串呢?
 querySelectAll和ByClassName所获取元素的区别?如何绑定事件?
-getComputedStyle用法?
+getComputedStyle用法?           传入元素，伪类元素（可选）只读属性
 正则匹配电话号码.exec,match,search用法?
 function rest参数长度?function.length如何判断与arguments对象长度区别?
 数组查某个字符出现次数
-选择器权值
-右键菜单定制
-函数不定参
-setTimeout原理
+右键菜单定制？                document.oncontextmenu
 求最大子数组和.
 ul li实现计数.
 JPG,png图片特点,场景
@@ -308,11 +316,20 @@ URL监听变化
     1.数组操作
     3.动态规划(书包问题)
     4.编程题(正则)
-栈封装,利用栈对数组reverse(编程)
 Node的一些用法
+    node多线程如何实现？多线程如何保障各个线程的安全?
+    node了解哪些?node各个模块的底层原理?
+
 JS内部属性
+    内部才用的特性是为了实现JavaScript引擎用的，因此在JS中不能直接访问它们
+    [[Scopes]]    [[FunctionLocation]]
+    [[Enumerable]]    [[Configurable]]    [[Writable]]
+    获取：Object.getOwnPropertyDescriptor(属性所在的对象,要读取其描述符的属性名称) //返回值是一个对象
 页面之间传参
-出入栈可能性计算
+    url
+    cookie|storge
+    postMessage//otherWindow.postMessage(message, targetOrigin, [transfer]);
+
 
 在不使用后端模板渲染的情况下,如何做前端数据直出(不使用异步请求数据)?
 SSR适用什么场景?SPA首屏空白原因?
@@ -367,8 +384,9 @@ UTF-8和Unicode的区别：Unicode:统一地区性文字编码，UTF-8:一种uni
 
 内存泄露的原因以及如何去手动释放内存
     XMLHttpRequest 泄漏发生在IE7-8,释放方法，将XMLHttpRequest实例对象设置为Null；
-    DOM&BOM等COM对象循环绑定 泄漏发生在IE6-8，释放方法，切断循环引用，将对对象的应用设置为Null；
+    DOM、BOM等对象循环绑定 泄漏发生在IE6-8，释放方法，切断循环引用，将对对象的应用设置为Null；
     setTimeout(严格上说不能算是泄露，是被闭包持有了，是正常的表现)，对于闭包中无用的变量可以使用delete操作符进行释放；
+
 垃圾回收机制
     引用计数：没人用它就清除，要是互相引用的它就不知道怎么清除了
     标记清除：从根对象到达不了的变量就清除
@@ -379,16 +397,23 @@ iterator
 如何设计一些组件，原则是什么，你写过什么自豪或者眼前一亮的组件，大概从组合、复用、重复、测试、维护等方面说了下
 a组件在b组件内，c组件在a组件内，如何让他渲染出来，a组件和c组件同级
 post、get区别 99%的人都理解错了HTTP中GET与POST的区别
-如何实现私有变量？说出一种方法即可。
-100 * 100 的 Canvas 占内存多大？
+如何实现私有变量？说出一种方法即可？
+    命名约定_prvlaue    WeakMap     Symbol      闭包
+ 
+100 * 100 的 Canvas 占内存多大？         一个像素4（RGBA），所以是4000
 HTML5新增了哪些内容或API，使用过哪些？
+    语义
+    网络（sse，websocket）    绘图（Canvas、SVG、WebGL、requestAnimationFrame方法）
+    移动端（摄像头、touch事件、地理位置、方向、离线存储IndexedDB、性能WebWorkers）
+    其他（history|全屏|drag API、contentEditable）
 input和textarea的区别？          textarea多行，标签闭合，用row|col设置大小
 用一个div模拟textarea的实现？   h5的属性contenteditable使div可编辑
-移动设备将页面中的数字识别为电话号码的方法
-BFC
-    不与浮动元素重叠(解决边距重叠、清楚浮动)
-    计算BFC的高度的时候，浮动元素也会参与计算
-    生成 BFC:
+移动设备将页面中的数字识别为电话号码的方法？             <meta name = "format-detection" content = "telephone=no">  
+BFC是什么？
+    原理?作用？   
+        不与浮动元素重叠(解决边距重叠、清楚浮动)
+        计算BFC的高度的时候，浮动元素也会参与计算
+    怎么生成？
         根元素
         overflow不为visible
         float不为none
@@ -412,17 +437,23 @@ IFC：行盒模型|内联盒子，
 实现页面加载进度条？    进度：xhr.addEventListener('progress'）绘制：currentProgressBar.style.transform = `translateX(${percentComplete * 100 - 100}%)`;
 实现拖拽功能，比如把5个兄弟节点中的最后一个节点拖拽到节点1和节点2之间
     HTML5：draggable="true"， ondrop、ondragover、ondragstart里dataTransfer用来传拖拽节点间的数据，再appendChild上去
-编写分页器组件的时候，为了减少服务端查询次数，点击“下一页”怎样能确保还有数据可以加载（请求数据不会为空）？
-高阶组件的作用
-stateless组件(感觉主要是让我回答纯函数的概念)
-怎么让组件适应不同场景
-使用前端框架相对于使用jQuery带来哪些好处
-如果有一个N条数据列表需要渲染，怎么样才能使浏览器不卡
-给你做淘宝首页搜索框你会怎么做
-数据库的索引作用、原理
-MIME(多用途 互联网 邮件 扩展类型): 浏览器会自动使用指定应用程序来打开
-HTTP 超文本传输协议 特点:简单 灵活 无连接 无状态
-http相关(三次握手，四次挥手)
+纯函数是？          这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+怎么让组件适应不同场景？            可配置props
+使用前端框架相对于使用jQuery带来哪些好处？          性能高（用vdom减少dom操作）、复用性高（组件）、双向数据绑定
+如果有一个N条数据列表需要渲染，怎么样才能使浏览器不卡？             分批渲染，用requestAnimationFrame方法
+MIME(多用途 互联网 邮件 扩展类型):          浏览器会自动使用指定应用程序来打开
+HTTP 超文本传输协议 特点:               简单 灵活 无连接 无状态
+http的3次握手 4次挥手 过程：
+    3次握手
+        A:你好，听到了吗
+        B:听到了，你呢，每断线吧？
+            (为什么不是3次握手而不是两次，假如2次的话，可能A网络不好几天前发的突然被B收到了，B就一直傻等)
+        A:我听到了
+    4次挥手
+        A:我搞完了，准备挂了，你搞完了吗？
+        B:等会，等我发完给你
+        B:好了，发完了
+        A:好，我挂了
 http2对比http1.x
     网易一面问题，说了下2.0的采用二进制格式、多路复用、报文头压缩、服务器主动推送还扯了websocket 然后网易接着问，报文头怎么压缩的
 
@@ -432,15 +463,10 @@ HTTP 常用的请求方法：
     PUT - 资源更新
 HTTP状态码 
     1信息  2成功  3重定向 4客户端 5服务端
-    204 No Content：没有新文档，浏览器应该继续显示原来的文档
-    206 Partial Content：客户发送了一个带有Range头的GET请求，服务器完成了它
-    301 Moved Permanently：所请求的页面已经转移至新的url
-    302 Found：所请求的页面已经临时转移至新的url
-    304 Not Modified：客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用。(重点: 304)    
-    401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用    
-    502 & Bad Gateway: 错误的网关；
-    503 & Service Unavailable: 服务器超载或正在维护，无法处理请求； 
-    504 & Gateway timeout: 网关超时；
+    204 无内容，无更新    206 返回指定range的局部内容
+    301 永久迁移url    302 临时迁移url    304 无修改，用缓存的(重点: 304)    
+    401 没授权
+    502 错误的网关    503 服务不可用    504 网关超时
 行内元素：a、b、span、img、input、strong、select、label、em、button、textarea
 块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote
 空元素：br、meta、hr、link、input、img

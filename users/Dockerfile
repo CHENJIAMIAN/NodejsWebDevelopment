@@ -9,9 +9,12 @@ ENV REST_LISTEN="0.0.0.0"
 RUN mkdir -p /userauth
 COPY package.json sequelize-docker-mysql.yaml *.mjs *.js /userauth/
 WORKDIR /userauth
-RUN apt-get update -y  \
-    && apt-get -y install curl python build-essential git ca-certificates  \
-    && npm install --unsafe-perm 
+RUN apt-get update -y
+RUN apt-get -y install curl python
+RUN apt-get -y install build-essential
+RUN apt-get -y install git ca-certificates
+RUN npm install cnpm -g
+RUN cnpm install --unsafe-perm
 # RUN ./node_modules/.bin/nsp check
  
 EXPOSE 3333 
