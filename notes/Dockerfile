@@ -10,8 +10,10 @@ ENV NOTES_SESSIONS_DIR="/sessions"
 # has to be other than localhost:3000
 ENV TWITTER_CALLBACK_HOST=evsoul.com
 
-RUN apt-get update -y \
-    && apt-get -y install curl python build-essential git ca-certificates sqlite3
+RUN apt-get update -y
+RUN apt-get -y install curl python 
+RUN apt-get -y install build-essential git 
+RUN apt-get -y install ca-certificates sqlite3.
 
 RUN mkdir -p /notesapp /notesapp/minty /notesapp/partials /notesapp/public /notesapp/routes /notesapp/theme /notesapp/views
 COPY minty/ /notesapp/minty/

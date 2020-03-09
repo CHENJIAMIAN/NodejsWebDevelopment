@@ -13,8 +13,8 @@ RUN apt-get update -y
 RUN apt-get -y install curl python
 RUN apt-get -y install build-essential
 RUN apt-get -y install git ca-certificates
-RUN npm install cnpm -g
-RUN cnpm install --unsafe-perm
+# RUN npm install cnpm -g
+RUN npm install --unsafe-perm
 # RUN ./node_modules/.bin/nsp check
  
 EXPOSE 3333 
