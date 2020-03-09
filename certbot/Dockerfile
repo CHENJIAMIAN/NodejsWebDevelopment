@@ -4,8 +4,8 @@ FROM debian:jessie
 # https://hub.docker.com/r/gaafar/cron/
 
 # Install cron, certbot, bash, plus any other dependencies
-RUN apt-get update \
-   && apt-get install -y cron bash wget
+RUN apt-get update 
+RUN apt-get install -y cron bash wget
 RUN mkdir -p /webroots/evsoul.com/.well-known && mkdir -p /scripts
 
 WORKDIR /scripts
