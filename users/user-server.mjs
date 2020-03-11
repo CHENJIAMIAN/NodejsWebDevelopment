@@ -5,7 +5,7 @@ import DBG from 'debug';
 const log = DBG('users:service'); 
 const error = DBG('users:error'); 
 
-import * as usersModel from './users-sequelize';
+import * as usersModel from './users-sequelize.mjs';
 
 var server = restify.createServer({
     name: "User-Auth-Service",

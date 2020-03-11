@@ -1,8 +1,8 @@
 import util from 'util';
 import express from 'express';
-import * as notes from '../models/notes';
-import { ensureAuthenticated } from './users'; 
-import * as messages from '../models/messages-sequelize'; 
+import * as notes from '../models/notes.mjs';
+import { ensureAuthenticated } from './users.mjs'; 
+import * as messages from '../models/messages-sequelize.mjs'; 
 import { enableSocketio } from '../app.mjs';
 
 export const router = express.Router();

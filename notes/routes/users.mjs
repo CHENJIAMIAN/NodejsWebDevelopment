@@ -6,8 +6,8 @@ import passportTwitter from 'passport-twitter';
 const TwitterStrategy = passportTwitter.Strategy; 
 import passportLocal from 'passport-local';
 const LocalStrategy = passportLocal.Strategy; 
-import * as usersModel from '../models/users-superagent';
-import { enableSocketio, sessionCookieName } from '../app';
+import * as usersModel from '../models/users-superagent.mjs';
+import { enableSocketio, sessionCookieName } from '../app.mjs';
 
 export const router = express.Router();
 

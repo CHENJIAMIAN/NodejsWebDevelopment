@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "user-server.mjs",
   "scripts": {
-    "start": "DEBUG=users:* PORT=3333 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node  --experimental-modules user-server",
+    "start": "DEBUG=users:* PORT=3334 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node  --experimental-modules user-server",
     "on-server": "PORT=3333 SEQUELIZE_CONNECT=sequelize-server-mysql.yaml node --experimental-modules ./user-server",
     "docker": "node --experimental-modules ./user-server",
     "docker-build": "docker build -t node-web-development/userauth ."

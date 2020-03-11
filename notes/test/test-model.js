@@ -2,7 +2,7 @@
 
 require = require("@std/esm")(module,{"esm":"js"});
 const assert = require('chai').assert;
-const model = require('../models/notes');
+const model = require('../models/notes.mjs');
 
 describe("Model Test", function() {
   beforeEach(async function () {//该挂钩在每个测试用例之前执行

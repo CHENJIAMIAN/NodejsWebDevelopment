@@ -2,14 +2,15 @@ import util from 'util';
 import DBG from 'debug';
 const debug = DBG('notes:notes-notes'); 
 const error = DBG('notes:error-notes'); 
-import _events from './notes-events'; 
+import _events from './notes-events.mjs'; 
 export const events = _events;
 
 var TheModule;
 
 async function model() {
     if (TheModule) return TheModule;
-    TheModule = await import(`../models/notes-${process.env.NOTES_MODEL}`);
+    console.trace();
+    TheModule = await import(`../models/notes-${process.env.NOTES_MODEL}.mjs`);
     return TheModule;
 }
 

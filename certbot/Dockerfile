@@ -4,6 +4,12 @@ FROM debian:jessie
 # https://hub.docker.com/r/gaafar/cron/
 
 # Install cron, certbot, bash, plus any other dependencies
+
+#备份旧的配置文件
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+#替换为我们自定义的配置文件
+COPY sources.list /etc/apt/
+
 RUN apt-get update 
 RUN apt-get install -y cron bash wget
 RUN mkdir -p /webroots/evsoul.com/.well-known && mkdir -p /scripts

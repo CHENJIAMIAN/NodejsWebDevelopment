@@ -20,9 +20,9 @@ import DBG from 'debug';
 const debug = DBG('notes:debug-INDEX'); 
 const error = DBG('notes:error-INDEX'); 
 
-import { socketio as indexSocketio, router as index } from './routes/index';
-import { router as users, initPassport } from './routes/users';
-import { socketio as notesSocketio, router as notes } from './routes/notes'; 
+import { socketio as indexSocketio, router as index } from './routes/index.mjs';
+import { router as users, initPassport } from './routes/users.mjs';
+import { socketio as notesSocketio, router as notes } from './routes/notes.mjs'; 
 
 import passportSocketIo from 'passport.socketio'; 
 import session from 'express-session';
@@ -37,9 +37,9 @@ const sessionStore  = new FileStore({
 }); 
 
 // Workaround for lack of __dirname in ES6 modules
-import dirname from './dirname.js';
-const {__dirname} = dirname;
-
+// import dirname from './dirname.js';
+// const {__dirname} = dirname;
+const __dirname = path.resolve();
 const app = express();
 
 export default app;

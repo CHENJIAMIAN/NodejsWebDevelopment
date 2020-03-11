@@ -1,6 +1,6 @@
 import util from 'util';
 import express from 'express';
-import * as notes from '../models/notes';
+import * as notes from '../models/notes.mjs';
 import { enableSocketio } from '../app.mjs';
 
 export const router = express.Router();

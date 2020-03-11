@@ -1,4 +1,4 @@
-FROM node:9.5
+FROM node:12.13.0
  
 ENV DEBUG="notes:*,messages:*" 
 ENV SEQUELIZE_CONNECT="models/sequelize-docker-mysql.yaml" 
@@ -10,10 +10,18 @@ ENV NOTES_SESSIONS_DIR="/sessions"
 # has to be other than localhost:3000
 ENV TWITTER_CALLBACK_HOST=evsoul.com
 
+#备份旧的配置文件
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+#替换为我们自定义的配置文件
+COPY sources.list /etc/apt/
+
 RUN apt-get update -y
-RUN apt-get -y install curl python 
-RUN apt-get -y install build-essential git 
-RUN apt-get -y install ca-certificates sqlite3.
+RUN apt-get -y install curl  
+RUN apt-get -y install python 
+RUN apt-get -y install build-essential 
+RUN apt-get -y install git 
+RUN apt-get -y install ca-certificates
+RUN apt-get -y install sqlite3
 
 RUN mkdir -p /notesapp /notesapp/minty /notesapp/partials /notesapp/public /notesapp/routes /notesapp/theme /notesapp/views
 COPY minty/ /notesapp/minty/
@@ -23,9 +31,10 @@ COPY public/ /notesapp/public/
 COPY routes/ /notesapp/routes/
 COPY theme/ /notesapp/theme/
 COPY views/ /notesapp/views/
-COPY app.mjs package.json /notesapp/
+COPY dirname.js app.mjs  package.json /notesapp/
 
 WORKDIR /notesapp
+RUN npm config set registry https://registry.npm.taobao.org
 RUN npm install --unsafe-perm
 # RUN ./node_modules/.bin/nsp check
 

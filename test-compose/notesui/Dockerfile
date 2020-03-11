@@ -1,6 +1,12 @@
 FROM node:9
 
 # See https://crbug.com/795759
+
+#备份旧的配置文件
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+#替换为我们自定义的配置文件
+COPY sources.list /etc/apt/
+
 RUN apt-get update && apt-get install -yq libgconf-2-4
 
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
@@ -26,6 +32,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 # ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Install puppeteer so it's available in the container.
+RUN npm config set registry https://registry.npm.taobao.org
 RUN npm install puppeteer 
 RUN npm install mocha chai
 
