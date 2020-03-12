@@ -28,3 +28,5 @@ RUN npm install
  
 EXPOSE 3333 
 CMD npm run docker 
+#    npm run docker 运行 "docker": "node --experimental-modules ./user-server.mjs",
+
