@@ -11,6 +11,9 @@ import DBG from 'debug';
 const debug = DBG('notes:router-users'); 
 const error = DBG('notes:error-notes'); 
 
+// 如果是穿透BS架构的话，这里应该是跟后端提供的API交互
+// 但是作为大前端应用，这里是跟models/notes-sequelize.mjs交互
+
 // Add Note. (create)
 router.get('/add', ensureAuthenticated, (req, res, next) => {
     try {
