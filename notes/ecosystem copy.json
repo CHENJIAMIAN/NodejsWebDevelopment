@@ -16,7 +16,7 @@
     {
       "name": "Notes",
       "script": "app.mjs",
-      "cwd": "/opt/notes",
+      "cwd": "",
       "node_args": "--experimental-modules",
       "env": {
         "PORT": "3000",

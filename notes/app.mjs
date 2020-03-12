@@ -3,7 +3,7 @@
 import fs from 'fs-extra';
 import url from 'url';
 import express from 'express';
-import forceSSL from 'express-force-ssl';
+// import forceSSL from 'express-force-ssl';
 import helmet from 'helmet';
 import csrf from 'csurf';
 import sqlinjection from 'sql-injection';
@@ -60,7 +60,7 @@ app.use(helmet.hsts({
   maxAge: sixtyDaysInSeconds
 }));
 app.use(helmet.xssFilter());
-app.use(forceSSL);
+// app.use(forceSSL);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -75,7 +75,6 @@ const USEHTTPS = process.env.NOTES_USE_HTTPS
           && (typeof process.env.NOTES_USE_HTTPS === 'string')
           && (process.env.NOTES_USE_HTTPS === 'true');
 const CERTSDIR = process.env.NOTES_CERTS_DIR;
-
 const options = USEHTTPS ? {
   key: fs.readFileSync(`${CERTSDIR}/privkey1.pem`),
   cert: fs.readFileSync(`${CERTSDIR}/fullchain1.pem`),
@@ -110,6 +109,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 if (USEHTTPS) {
+  debugger  
   serverSSL.listen(3443);
   serverSSL.on('error', onError);
   serverSSL.on('listening', onListening);
@@ -247,6 +247,7 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+  debugger
   if (error.syscall !== 'listen') {
     throw error;
   }

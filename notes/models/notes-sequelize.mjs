@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import util from 'util';
 import jsyaml from 'js-yaml';
-import Note from './Note';
+import Note from './Note.mjs';
 import Sequelize from 'sequelize';
 import DBG from 'debug';
 const debug = DBG('notes:notes-sequelize'); 
@@ -99,7 +99,8 @@ export async function destroy(key) {
 export async function keylist() {
     try {
         const SQNote = await connectDB();
-        const notes = await SQNote.findAll({ attributes: [ 'notekey' ] });
+        const notes = await SQNote.findAll({ attributes: ['notekey'] });
+        debugger
         return notes.map(note => note.notekey);
     } catch (e) {
         error(`notes KEYLIST ERROR ${e.stack}`);

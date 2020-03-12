@@ -1,11 +1,10 @@
 {
   "name": "user-auth-server",
   "version": "0.0.1",
-  "main": "user-server.mjs",
   "scripts": {
-    "start": "DEBUG=users:* PORT=3334 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node  --experimental-modules user-server",
-    "on-server": "PORT=3333 SEQUELIZE_CONNECT=sequelize-server-mysql.yaml node --experimental-modules ./user-server",
-    "docker": "node --experimental-modules ./user-server",
+    "start": "DEBUG=users:* PORT=3334 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node  --experimental-modules user-server.mjs",
+    "on-server": "PORT=3333 SEQUELIZE_CONNECT=sequelize-server-mysql.yaml node --experimental-modules ./user-server.mjs",
+    "docker": "node --experimental-modules ./user-server.mjs",
     "docker-build": "docker build -t node-web-development/userauth ."
   },
   "engines": {
@@ -19,7 +18,7 @@
     "mysql2": "^1.5.1",
     "restify": "^6.3.x",
     "restify-clients": "^1.5.x",
-    "sqlite3": "^3.1.x",
+    "sqlite3": "4.1.1",
     "sequelize": "^4.31.x",
     "nsp": "*"
   }

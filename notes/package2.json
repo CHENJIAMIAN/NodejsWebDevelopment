@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "pm2 start ecosystem.json",
+    "logs": "pm2 logs",
     "stop": "pm2 stop ecosystem.json",
     "restart": "pm2 restart ecosystem.json",
     "status": "pm2 status",

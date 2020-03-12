@@ -11,6 +11,7 @@ async function model() {
     if (TheModule) return TheModule;
     console.trace();
     TheModule = await import(`../models/notes-${process.env.NOTES_MODEL}.mjs`);
+    
     return TheModule;
 }
 
