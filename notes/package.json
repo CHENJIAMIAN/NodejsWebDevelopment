@@ -32,8 +32,8 @@
     "helmet": "3.11.x",
     "jquery": "1.9.1",
     "js-yaml": "3.10.x",
-    "level": "2.1.x",
-    "mongodb": "3.x",
+    "level": "^6.0.1",
+    "mongodb": "^3.5.5",
     "morgan": "~1.9.0",
     "mysql2": "^1.5.1",
     "nsp": "*",
@@ -48,7 +48,7 @@
     "session-file-store": "^1.2.x",
     "socket.io": "2.x",
     "sql-injection": "*",
-    "sqlite3": "3.1.x",
+    "sqlite3": "4.1.1",
     "superagent": "^3.8.x"
   }
 }

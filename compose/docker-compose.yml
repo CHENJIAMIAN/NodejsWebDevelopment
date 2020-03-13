@@ -40,11 +40,11 @@ services:
     networks:
       - frontnet
     ports:
-      - "80:3000"
+      - "3333:3000"
       - "443:3443"
     restart: always
     environment:
-      - NOTES_USE_HTTPS=true
+      - NOTES_USE_HTTPS=false
       - NOTES_CERTS_DIR=/etc/letsencrypt/archive/evsoul.com
     #   - NODE_ENV="production" 
     volumes:

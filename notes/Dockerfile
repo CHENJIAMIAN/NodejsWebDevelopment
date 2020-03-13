@@ -10,10 +10,10 @@ ENV NOTES_SESSIONS_DIR="/sessions"
 # has to be other than localhost:3000
 ENV TWITTER_CALLBACK_HOST=evsoul.com
 
-#备份旧的配置文件
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-#替换为我们自定义的配置文件
-COPY sources.list /etc/apt/
+# #备份旧的配置文件
+# RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+# #替换为我们自定义的配置文件
+# COPY sources.list /etc/apt/
 
 RUN apt-get update -y
 RUN apt-get -y install curl  
@@ -46,4 +46,4 @@ WORKDIR /notesapp
 
 VOLUME /sessions 
 EXPOSE 3000 
-CMD node --experimental-modules ./app
+CMD node --experimental-modules ./app.mjs
