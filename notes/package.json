@@ -30,7 +30,7 @@
     "fs-extra": "5.x",
     "hbs": "~4.0.1",
     "helmet": "3.11.x",
-    "jquery": "1.9.1",
+    "jquery": "3.5.0",
     "js-yaml": "3.10.x",
     "level": "^6.0.1",
     "mongodb": "^3.5.5",
